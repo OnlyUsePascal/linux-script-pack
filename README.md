@@ -1,30 +1,5 @@
-# Config
-## More disk space
-### Cleanup
-```bash
-echo "> clean old kernels"
-yay autoremove
-
-echo "> clean cache - /var/cache"
-sudo rm -r /var/cache/*
-
-echo "> clean cache - ~/.cache"
-sudo rm -r ~/.cache/*
-
-echo "> clean journal"
-sudo journalctl --vacuum-size=50M
-
-echo "> clean log"
-sudo rm -r /var/log/*
-
-echo "> clean packages"
-yay -Scc
-
-echo "> clean orphan pkgs"
-yay -Rns $(yay -Qtdq)
-```
-
-### Swap file
+# Tips & Tricks
+## Swap file
 ```bash
 # Init
 sudo fallocate -l 5G /swapfile
@@ -81,36 +56,45 @@ sudo systemctl start bluetooth.service
 sudo systemctl enable bluetooth.service
 ```
 
-## Boot 
+## Bash
+### open file without printing
+```bash
+someCommand > /dev/null 2>&1 &
+```
+
+# Troubleshoot
+## System
 ### Boot missing
-1. Chroot from live usb
-- install
+Chroot from live usb
+
+install
 ```bash
 yay -S arch-install-scripts
 ```
 
-- mount os disk
+mount os disk
 ```bash
 sudo mount /dev/nvme0n1p6 /mnt
 sudo mount /dev/nvme0n1p5 /mnt/efi
 ```
 
-- chroot
+chroot
 ```bash
-sudo chroot /mnt
-
-#update
-yay -Syu
+sudo arch-chroot /mnt
 ```
 
-- reinstall kernel
+Update
+```bash
+yay -Syu
+```
+reinstall kernel
 ```bash
 yay -S kernel-install-for-dracut
 reinstall-kernels
 #reboot after this
 ```
 
-- custom bootloader entry menu
+custom bootloader entry menu
 ```bash
 sudo mkdir /mnt/bootWin
 sudo mount /dev/nvme0n1p1 /mnt/bootWin
@@ -122,8 +106,13 @@ timeout 5
 console-mode keep
 ```
 
+### Cannot switch screen 
+settings &rarr; window management &rarr; multiscreen behaviour &rarr; turn off `active screen follows mouse`
 
-## Other
+### drive not found to boot while installation
+switch drive boot mode to AHCI 
+
+## Input
 ### Fn Binding
 ```bash
 #run this at startup
@@ -131,24 +120,20 @@ console-mode keep
 echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
 ```
 
-### Cannot switch screen 
-- settings &rarr; window management &rarr; multiscreen behaviour &rarr; turn off `active screen follows mouse`
+## mixed langugue
+go to file /etc/locale.conf
 
-### open file without printing
-```bash
-someCommand > /dev/null 2>&1 &
-```
+set every variable to `en_US.UTF-8`
 
-### drive not found to boot while installation
-- switch drive boot mode to AHCI 
 
-### mixed langugue
-- go to file /etc/locale.conf
-- set every variable to "en_US.UTF-8"
-
+## Audio
 ### remove mic noise
-- use EasyEffects
+use EasyEffects
 
+### micro auto adjust 
+Go to `chrome://flags`
+
+disable a flag: `Allow WebRTC to adjust the input volume.`
 
 # Software
 ## Priority
@@ -156,7 +141,6 @@ someCommand > /dev/null 2>&1 &
 yay -Syu
 nvidia-inst
 ```
-
 
 ## Unikey
 ```bash
@@ -253,3 +237,214 @@ warp-taskbar
 chromium --force-device-scale-factor=1.2 %U
 ```
 
+
+# Some automation script
+## Autostart
+```bash
+#!/usr/bin/bash
+
+sleep 5
+
+#yakuake
+# programs
+function startProgs() {
+    arr=("$@")
+    for value in "${arr[@]}"
+    do
+        $value > /dev/null 2>&1 &
+    done
+}
+
+# phase 2
+progArr=(
+    "yakuake"
+    "ibus-daemon -drx"
+    "warp-taskbar"
+)
+startProgs "${progArr[@]}"
+```
+
+## Config
+```bash
+#!/usr/bin/bash
+
+sleep 5
+
+# Fn Binding
+echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
+
+# Time Sync
+timeRow="`curl -X 'GET' 'https://timeapi.io/api/Time/current/zone?timeZone=Asia/Ho_Chi_Minh' -H 'accept: application/json' | jq .dateTime`"
+timeRow=`echo ${timeRow:1:19} | tr T ' '`
+echo $timeRow
+sudo timedatectl set-time "${timeRow}"
+```
+
+## Cleanup
+```bash
+#!/usr/bin/bash
+
+echo "> clean old kernels"
+yay autoremove
+
+echo "> clean cache - /var/cache"
+sudo du -sh /var/cache
+sudo rm -r /var/cache/*
+
+echo "> clean cache - ~/.cache"
+sudo du -sh ~/.cache
+sudo rm -r ~/.cache/*
+
+echo "> clean log"
+sudo du -sh /var/log
+sudo rm -r /var/log/*
+
+echo "> clean journal"
+sudo journalctl --disk-usage
+sudo journalctl --vacuum-size=50M
+
+echo "> clean orphan pkgs"
+yay -Rns $(yay -Qtdq)
+
+# echo "> clean snap"
+# set -eu
+# snap list --all | awk '/disabled/{print $1, $3}' |
+#     while read snapname revision; do
+#         snap remove "$snapname" --revision="$revision"
+#     done
+
+```
+
+## Open programs faster
+
+`bashrc`
+```bash
+...
+# alias bashconfig="mate ~/.bashrc"
+# alias ohmybash="mate ~/.oh-my-bash"
+alias 'gadd'="git add"
+alias "op"="bash '/mnt/Data/_linux/Script_pack/openProgram.sh'"
+alias 'gpush'='git push'
+alias 'gcom'='git commit -m'
+alias 'glog'='git log --oneline'
+alias 'gpull'='git pull'
+alias 'py'='python'
+alias 'vim'='nvim'
+alias 'gr'='gradle'
+
+```
+
+Combined with this script
+```bash
+echo "Opening: $1"
+command="send nudes"
+chrome_scale="--force-device-scale-factor=0.9"
+browser="google-chrome-stable"
+
+case $1 in
+# system
+    "sdown")
+        shutdown -h now
+        exit
+        ;;
+    "rboot")
+        reboot
+        exit
+        ;;
+    "sleep")
+        systemctl suspend
+        exit
+        ;;
+    "aConf")
+        sudo /mnt/Data/_linux/Script_pack/autostartConfig.sh
+        exit
+        ;;
+    "clean")
+        /mnt/Data/_linux/Script_pack/sysClean.sh
+        exit
+        ;;
+    "vpn")
+        str=$(warp-cli status)
+        sub="Connected"
+
+        if [[ "${str}" == *"${sub}"* ]]; then
+            echo "Connected, now disconnect"
+            command="warp-cli disconnect"
+        else
+            echo "Not connected, now connect"
+            command="warp-cli connect"
+        fi
+        ;;
+
+# Chrome base
+	"calen")
+        command="$browser $chrome_scale --new-window https://calendar.google.com/"
+        ;;
+    "chr")
+        command="$browser $chrome_scale"
+        ;;
+    "trelo")
+        command="$browser $chrome_scale --new-window https://trello.com/"
+        ;;
+    "note")
+        command="$browser $chrome_scale --new-window https://www.notion.so/"
+        ;;
+    "team")
+        command="$browser $chrome_scale --new-window https://teams.microsoft.com/"
+        ;;
+    "dis")
+        command="$browser $chrome_scale --new-window https://www.discord.com/login"
+        ;;
+
+# code
+    "idea")
+        command="/mnt/Data/_linux/Programs/idea-IC-231.9161.38/bin/idea.sh"
+        ;;
+    "code")
+        command="code"
+        ;;
+    "mongo")
+        sudo mongod --config /mnt/Data/_linux/Programs/mongodb/mongodb.conf
+        exit
+        ;;
+    "maria")
+        sudo systemctl start mariadb.service
+        exit
+        ;;
+    "dbeav")
+        command="dbeaver"
+        ;;
+
+# editor
+    "menu")
+        code /mnt/Data/_linux/Script_pack/openProgram.sh
+        exit
+        ;;
+    "vim")
+        command="gtk-launch nvim"
+        ;;
+    "bashrc")
+        sudo nano ~/.bashrc
+        exit
+        ;;
+    "todo")
+        code /home/joun/Desktop/todo.txt
+        exit
+        ;;
+
+# other 
+    "xdm")
+        command="xdman"
+        ;;
+
+    *)
+        echo "Invalid Input?"
+        exit
+        ;;
+
+
+esac
+
+$command > /dev/null 2>&1 &
+
+```
