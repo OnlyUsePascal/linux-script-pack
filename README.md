@@ -1,5 +1,6 @@
-# Tips & Tricks
-## Swap file
+# Making life easier
+## Swap 
+### Pure swap
 ```bash
 # Init
 sudo fallocate -l 5G /swapfile
@@ -12,6 +13,50 @@ sudo nano /etc/fstab
 # add this line to bottom of the file
 /swapfile swap swap defaults 0 0
 ```
+
+### Zram
+- [Article here](https://wiki.archlinux.org/title/Zram)
+
+- Somehow i got builtin setup, so how to change the zram capacity
+
+Checking info - usally format name of `/dev/zram`
+```shell
+$ lsblk
+
+NAME         MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+...
+zram0        254:0    0     4G  0 disk [SWAP]
+```
+
+Change size / compress algo 
+```shell
+swapoff /dev/zram0
+
+zramctl /dev/zram0 --algorithm zstd --size 32G
+
+mkswap -U clear /dev/zram0
+
+swapon --priority 100 /dev/zram0
+```
+
+## Cleanup 
+Refers to the [cleanup script](./sysClean.sh)
+
+## Autostart
+Making program running as a service
+Create a new file as `/etc/systemd/system/_myscript_.service` and add the following contents:
+```shell
+[Unit]
+Description=My script
+ 
+[Service]
+ExecStart=/usr/bin/my-script
+ 
+[Install]
+WantedBy=multi-user.target
+```
+
+# Configuration
 
 ## Wifi 
 ```bash
@@ -62,8 +107,44 @@ sudo systemctl enable bluetooth.service
 someCommand > /dev/null 2>&1 &
 ```
 
+
+
 # Troubleshoot
 ## System
+### Reinstall Nvidia
+Fucking nvidia
+
+Source
+- https://wiki.archlinux.org/title/NVIDIA
+- https://github.com/korvahannu/arch-nvidia-drivers-installation-guide
+- https://computingforgeeks.com/install-nvidia-3d-graphics-driver-on-arch-linux/
+
+Install driver 
+```
+$ yay -S nvidia-lts nvidia-utils lib32-nvidia-utils
+$ yay -S nvidia-settings
+```
+
+AND FULL UPDATE (no need to upgrade packages from `aur/`) AND REBOOT
+```
+$ yay -Syu
+```
+
+Append `splash nvidia-drm.modeset=1`  to `options` line
+```
+$ sudo nano /boot/loader/entries
+```
+
+Use module: change the file `/etc/mkinitcpio.conf` like this
+```
+MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+```
+
+Then remake linux image
+```bash
+$ sudo mkinitcpio -P
+```
+
 ### Boot missing
 Chroot from live usb
 
@@ -87,14 +168,19 @@ Update
 ```bash
 yay -Syu
 ```
-reinstall kernel
-```bash
-yay -S kernel-install-for-dracut
-reinstall-kernels
-#reboot after this
+
+Main step
+- Create boot option
+```shell
+bootctl install
 ```
 
-custom bootloader entry menu
+- Or just reinstall kernel 
+```
+yay -S linux-lts linux-lts-headers
+```
+
+#### custom bootloader entry menu
 ```bash
 sudo mkdir /mnt/bootWin
 sudo mount /dev/nvme0n1p1 /mnt/bootWin
@@ -112,6 +198,9 @@ settings &rarr; window management &rarr; multiscreen behaviour &rarr; turn off `
 ### drive not found to boot while installation
 switch drive boot mode to AHCI 
 
+### cannot preview font
+Maybe u are using Plasma, switch to Xorg
+
 ## Input
 ### Fn Binding
 ```bash
@@ -120,11 +209,9 @@ switch drive boot mode to AHCI
 echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
 ```
 
-## mixed langugue
+### mixed langugue
 go to file /etc/locale.conf
-
 set every variable to `en_US.UTF-8`
-
 
 ## Audio
 ### remove mic noise
@@ -132,15 +219,12 @@ use EasyEffects
 
 ### micro auto adjust 
 Go to `chrome://flags`
-
 disable a flag: `Allow WebRTC to adjust the input volume.`
 
+### Microphone for bluetooth
+
+
 # Software
-## Priority
-```bash
-yay -Syu
-nvidia-inst
-```
 
 ## Unikey
 ```bash
@@ -237,214 +321,11 @@ warp-taskbar
 chromium --force-device-scale-factor=1.2 %U
 ```
 
+## Android
+### Adb server
+install `android-udev` and `android`
 
-# Some automation script
-## Autostart
-```bash
-#!/usr/bin/bash
-
-sleep 5
-
-#yakuake
-# programs
-function startProgs() {
-    arr=("$@")
-    for value in "${arr[@]}"
-    do
-        $value > /dev/null 2>&1 &
-    done
-}
-
-# phase 2
-progArr=(
-    "yakuake"
-    "ibus-daemon -drx"
-    "warp-taskbar"
-)
-startProgs "${progArr[@]}"
-```
-
-## Config
-```bash
-#!/usr/bin/bash
-
-sleep 5
-
-# Fn Binding
-echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
-
-# Time Sync
-timeRow="`curl -X 'GET' 'https://timeapi.io/api/Time/current/zone?timeZone=Asia/Ho_Chi_Minh' -H 'accept: application/json' | jq .dateTime`"
-timeRow=`echo ${timeRow:1:19} | tr T ' '`
-echo $timeRow
-sudo timedatectl set-time "${timeRow}"
-```
-
-## Cleanup
-```bash
-#!/usr/bin/bash
-
-echo "> clean old kernels"
-yay autoremove
-
-echo "> clean cache - /var/cache"
-sudo du -sh /var/cache
-sudo rm -r /var/cache/*
-
-echo "> clean cache - ~/.cache"
-sudo du -sh ~/.cache
-sudo rm -r ~/.cache/*
-
-echo "> clean log"
-sudo du -sh /var/log
-sudo rm -r /var/log/*
-
-echo "> clean journal"
-sudo journalctl --disk-usage
-sudo journalctl --vacuum-size=50M
-
-echo "> clean orphan pkgs"
-yay -Rns $(yay -Qtdq)
-
-# echo "> clean snap"
-# set -eu
-# snap list --all | awk '/disabled/{print $1, $3}' |
-#     while read snapname revision; do
-#         snap remove "$snapname" --revision="$revision"
-#     done
-
-```
-
-## Open programs faster
-
-`bashrc`
-```bash
-...
-# alias bashconfig="mate ~/.bashrc"
-# alias ohmybash="mate ~/.oh-my-bash"
-alias 'gadd'="git add"
-alias "op"="bash '/mnt/Data/_linux/Script_pack/openProgram.sh'"
-alias 'gpush'='git push'
-alias 'gcom'='git commit -m'
-alias 'glog'='git log --oneline'
-alias 'gpull'='git pull'
-alias 'py'='python'
-alias 'vim'='nvim'
-alias 'gr'='gradle'
-
-```
-
-Combined with this script
-```bash
-echo "Opening: $1"
-command="send nudes"
-chrome_scale="--force-device-scale-factor=0.9"
-browser="google-chrome-stable"
-
-case $1 in
-# system
-    "sdown")
-        shutdown -h now
-        exit
-        ;;
-    "rboot")
-        reboot
-        exit
-        ;;
-    "sleep")
-        systemctl suspend
-        exit
-        ;;
-    "aConf")
-        sudo /mnt/Data/_linux/Script_pack/autostartConfig.sh
-        exit
-        ;;
-    "clean")
-        /mnt/Data/_linux/Script_pack/sysClean.sh
-        exit
-        ;;
-    "vpn")
-        str=$(warp-cli status)
-        sub="Connected"
-
-        if [[ "${str}" == *"${sub}"* ]]; then
-            echo "Connected, now disconnect"
-            command="warp-cli disconnect"
-        else
-            echo "Not connected, now connect"
-            command="warp-cli connect"
-        fi
-        ;;
-
-# Chrome base
-	"calen")
-        command="$browser $chrome_scale --new-window https://calendar.google.com/"
-        ;;
-    "chr")
-        command="$browser $chrome_scale"
-        ;;
-    "trelo")
-        command="$browser $chrome_scale --new-window https://trello.com/"
-        ;;
-    "note")
-        command="$browser $chrome_scale --new-window https://www.notion.so/"
-        ;;
-    "team")
-        command="$browser $chrome_scale --new-window https://teams.microsoft.com/"
-        ;;
-    "dis")
-        command="$browser $chrome_scale --new-window https://www.discord.com/login"
-        ;;
-
-# code
-    "idea")
-        command="/mnt/Data/_linux/Programs/idea-IC-231.9161.38/bin/idea.sh"
-        ;;
-    "code")
-        command="code"
-        ;;
-    "mongo")
-        sudo mongod --config /mnt/Data/_linux/Programs/mongodb/mongodb.conf
-        exit
-        ;;
-    "maria")
-        sudo systemctl start mariadb.service
-        exit
-        ;;
-    "dbeav")
-        command="dbeaver"
-        ;;
-
-# editor
-    "menu")
-        code /mnt/Data/_linux/Script_pack/openProgram.sh
-        exit
-        ;;
-    "vim")
-        command="gtk-launch nvim"
-        ;;
-    "bashrc")
-        sudo nano ~/.bashrc
-        exit
-        ;;
-    "todo")
-        code /home/joun/Desktop/todo.txt
-        exit
-        ;;
-
-# other 
-    "xdm")
-        command="xdman"
-        ;;
-
-    *)
-        echo "Invalid Input?"
-        exit
-        ;;
-
-
-esac
-
-$command > /dev/null 2>&1 &
-
-```
+### Env var
+Create symlinks from these folders to elsewhere to avoid filling up ur main disk 
+- `/home/joun/.gradle/caches/`
+- `/home/joun/.android/avd/`
