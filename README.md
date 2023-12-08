@@ -193,7 +193,7 @@ console-mode keep
 ```
 
 ### Cannot switch screen 
-settings &rarr; window management &rarr; multiscreen behaviour &rarr; turn off `active screen follows mouse`
+settings &rarr; window management &rarr; window behavior &rarr; multiscreen behaviour (only show when u connect with another screen) &rarr; turn off `active screen follows mouse` + turn on `separate screen focus`
 
 ### drive not found to boot while installation
 switch drive boot mode to AHCI 
