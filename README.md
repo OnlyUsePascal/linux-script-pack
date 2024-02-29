@@ -16,7 +16,6 @@ sudo nano /etc/fstab
 
 ### Zram
 - [Article here](https://wiki.archlinux.org/title/Zram)
-
 - Somehow i got builtin setup, so how to change the zram capacity
 
 Checking info - usally format name of `/dev/zram`
@@ -111,6 +110,58 @@ someCommand > /dev/null 2>&1 &
 
 # Troubleshoot
 ## System
+### Binding Super key
+[Thread Reference](https://www.reddit.com/r/kde/comments/a439mn/can_i_use_modifieronlyshortcuts_in_kwinrc_to/)
+1. Create global key binding
+- One example can be executing a bash file `bash /path_to_file`
+
+2. The file `~/.config/khotkeysrc` now have a new section like this
+```
+[Data_4_1]
+Comment=Replacing Meta Key
+Enabled=true
+Name=New Action
+Type=SIMPLE_ACTION_DATA
+
+[Data_4_1Actions]
+ActionsCount=1
+
+[Data_4_1Actions0]
+CommandURL=bash /mnt/Data/_linux/Script_pack/testing2.sh
+Type=COMMAND_URL
+
+[Data_4_1Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_4_1Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_4_1Triggers0]
+Key=
+Type=SHORTCUT
+Uuid={bfd08db0-4e7c-43c5-9b6d-4a52c687d692}
+```
+- Take attention to the `Uuid` variable. 
+
+3. Mapping the function with the meta key 
+```bash
+# apply config
+kwriteconfig5 --file ~/.config/kwinrc --group ModifierOnlyShortcuts -  
+-key Meta "org.kde.kglobalaccel,/component/khotkeys,org.kde.kglobalacce  
+l.Component,invokeShortcut,{bfd08db0-4e7c-43c5-9b6d-4a52c687d692}"
+
+# reset
+qdbus org.kde.KWin /KWin org.kde.KWin.reconfigure
+```
+
+- Check if the config applied in file `~/.config/kwinrc`
+```
+# there will be this group
+[ModifierOnlyShortcuts]
+Meta=org.kde.kglobalaccel,/component/khotkeys,org.kde.kglobalaccel.Component,invokeShortcut,{bfd08db0-4e7c-43c5-9b6d-4a52c687d692}
+```
 ### Reinstall Nvidia
 Fucking nvidia
 
