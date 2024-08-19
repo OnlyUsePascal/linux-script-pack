@@ -38,6 +38,17 @@ mkswap -U clear /dev/zram0
 swapon --priority 100 /dev/zram0
 ```
 
+#### For Debian
+```bash
+# install
+apt install systemd-zram-generator
+systemctl daemon-reload
+systemctl start /dev/zram0
+
+# testing
+/sbin/zram 0
+```
+
 ## Cleanup 
 Refers to the [cleanup script](./sysClean.sh)
 

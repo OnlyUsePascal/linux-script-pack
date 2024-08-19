@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
-echo "> clean old kernels"
-yay autoremove
+echo "> clean packages"
+sudo apt autoremove --purge
+sudo apt clean
+# yay autoremove
 
 echo "> clean cache - /var/cache"
 sudo du -sh /var/cache
@@ -17,13 +19,13 @@ sudo rm -r /var/log/*
 
 echo "> clean journal"
 sudo journalctl --disk-usage
-sudo journalctl --vacuum-size=50M
+sudo journalctl --vacuum-size=100M
 
-echo "> clean orphan pkgs"
-yay -Rns $(yay -Qtdq)
+echo "> clean thorium"
+# rm -r /home/joun/.config/thorium/Default/Service\ Worker/CacheStorage/*
 
-echo '> clean coredumb - adb'
-sudo rm /var/lib/systemd/coredump/core.adb*
+# echo '> clean coredumb - adb'
+# sudo rm /var/lib/systemd/coredump/core.adb*
 
 # echo '> clean google cache'
 # killall chromium

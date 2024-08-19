@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-sleep 5
+sleep 3
 
 #yakuake
 # programs
@@ -14,12 +14,13 @@ function startProgs() {
 
 # phase 2
 progArr=(
-    "yakuake"
+#     "yakuake"
 #     "snixembed --fork"
-    "ibus-daemon -drx"
-    "warp-taskbar"
-    "dropbox"
-    "bash /mnt/Data/_linux/Script_pack/topBar.sh"
+#     "ibus-daemon -drx"
+#     "warp-taskbar"
+#     "dropbox"
+    "bash /mnt/data/_linux/Script_pack/topBar.sh"
+    "bash /mnt/data/_linux/Script_pack/autostartConfig.sh"
     # "bash /mnt/Data/_linux/Script_pack/conky.sh"
     # "picom"
 )

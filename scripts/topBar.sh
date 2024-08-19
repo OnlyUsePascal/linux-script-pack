@@ -1,13 +1,13 @@
 #!/usr/bin/zsh
 
 # polybar
-echo 'Polybar'
+echo '> Polybar'
 killall polybar
 sleep 1
-polybar l1 & disown
-polybar l2 & disown
-polybar r1 & disown
+param='--quiet'
+polybar l1 $param & disown
 
-echo 'Latte Dock'
+echo '> Latte Dock'
 killall latte-dock
+sleep 2
 latte-dock & disown
