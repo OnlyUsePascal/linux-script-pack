@@ -1,0 +1,932 @@
+{
+  "files.autoSaveDelay": 10,
+
+  // layout
+  "workbench.tree.indent": 19,
+  "explorer.sortOrder": "type",
+  "window.restoreWindows": "none",
+  "terminal.integrated.commandsToSkipShell": [
+    // "workbench.action.toggleSidebarVisibility",
+    // "workbench.action.navigateUp",
+    // "workbench.action.focusActiveEditorGroup",
+  ],
+
+  // behavior
+  "C_Cpp.intelliSenseUpdateDelay": 500,
+  "C_Cpp.codeAnalysis.updateDelay": 500,
+
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+
+  "editor.inlineSuggest.enabled": true,
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.quickSuggestionsDelay": 5,
+  "editor.autoClosingOvertype": "always",
+  "editor.trimAutoWhitespace": false,
+
+  "window.openFoldersInNewWindow": "off",
+  "window.enableMenuBarMnemonics": false,
+  "window.commandCenter": false,
+
+  "security.workspace.trust.untrustedFiles": "open",
+  "git.openRepositoryInParentFolders": "never",
+
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.layoutControl.type": "toggles",
+  "workbench.layoutControl.enabled": false,
+  "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+  "files.associations": {
+    "*.desktop": "ini"
+  },
+
+  // theme
+  // "terminal.integrated.cwd": "${fileDirname}",
+  // "terminal.integrated.defaultLocation": ,: ,
+  "debug.console.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "editor.fontSize": 13,
+  "editor.lineHeight": 1.5,
+  "window.zoomLevel": 0.6,
+  "editor.fontFamily": "Jetbrains Mono",
+  "apc.font.family": "Jetbrains Mono",
+  "editor.cursorWidth": 3,
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.wordWrapColumn": 180,
+  "todohighlight.isEnable": true,
+  "editor.fontLigatures": true,
+  "alt-catppuccin.customUIColors": {},
+  "window.menuBarVisibility": "hidden",
+
+  "explorer.confirmPasteNative": false,
+  "update.mode": "none",
+  "update.showReleaseNotes": false,
+  "extensions.autoCheckUpdates": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "code-runner.runInTerminal": true,
+  "diffEditor.wordWrap": "off",
+
+  // python
+  "python.analysis.indexing": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.languageServer": "Pylance",
+
+  // latex
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["%DOCFILE%"],
+      "env": {}
+    }
+  ],
+
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "pdfLaTeX",
+      "tools": ["pdflatex"]
+    },
+    {
+      "name": "latexmk 🔃",
+      "tools": ["latexmk"]
+    },
+    {
+      "name": "xelatex",
+      "tools": ["xelatex"]
+    },
+    {
+      "name": "pdflatex ➞ bibtex ➞ pdflatex`×2",
+      "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+    },
+    {
+      "name": "xelatex ➞ bibtex ➞ xelatex`×2",
+      "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+    }
+  ],
+
+  // js
+  "eslint.debug": true,
+
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "window.title": "${rootName}${separator}${remoteName}${separator}VSCode",
+
+  "cmake.showOptionsMovedNotification": false,
+  "editor.linkedEditing": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.tabSize": 2,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "thunder-client.defaultURL": "http://localhost:8080/",
+  "mdb.confirmRunAll": false,
+
+  // path intellisense
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // /*==================================================================================
+  // ================================== VIM CONFIGURATION ===============================
+  // ==================================================================================*/
+  "keyboard.dispatch": "keyCode",
+  // // Copy indent from current line when starting a new line
+  // "vim.autoindent": true,
+  // // Highlights all text matching current search
+  // // Ignore case in search patterns
+  // "vim.ignorecase": true,
+  // // Show the next match while entering a search
+  // "vim.scroll": 8,
+  "vim.incsearch": true,
+  "vim.leader": "<space>",
+  // "vim.sneak": true,
+  "vim.showcmd": true,
+  "vim.surround": true,
+  "vim.easymotion": true,
+  "vim.statusBarColorControl": false,
+  "vim.useCtrlKeys": false,
+  "vim.useSystemClipboard": true,
+  "vim.highlightedyank.enable": true,
+  // "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.replace": "underline",
+  "vim.cursorStylePerMode.visual": "block",
+  // "vim.cursorStylePerMode.visualblock": "line",
+  // "vim.cursorStylePerMode.visualline": "line",
+  // "vim.normalModeKeyBindings": [
+  // ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "w", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "q", "w"],
+      "commands": [
+        "workbench.action.files.save",
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": ["<leader>", "q", "q"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "p", "p"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "t", "b"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    // {
+    //   "before": ["<leader>", ","],
+    //   "commands": ["editor.action.revealDefinitionAside"]
+    // }
+    // {
+    //   "before": ["<enter>"],
+    //   "after": ["o", "<esc>"]
+    // },
+    // {
+    //   "before": ["<S-enter>"],
+    //   "after": ["O", "<esc>"]
+    // },
+    // {
+    //   "before": ["<leader>", "t", "j"],
+    //   "commands": [
+    //     "workbench.action.togglePanel",
+    //   ]
+    // }
+    //   {
+    //     "before": ["g", "r"],
+    //     "commands": ["editor.action.goToReferences"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "t", "s", "b"],
+    //     "commands": ["workbench.action.toggleSidebarVisibility"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "r", "i", "e"],
+    //     "commands": ["revealInExplorer"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "h"],
+    //     "after": ["_"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "f", "v", "f"],
+    //     "commands": ["workbench.explorer.fileView.focus"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "q", "f"],
+    //     "commands": ["editor.action.quickFix"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "s"],
+    //     "commands": ["editor.action.duplicateSelection"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "f", "d"],
+    //     "commands": ["editor.action.formatDocument"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "r", "n"],
+    //     "commands": ["editor.action.rename"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "t", "s"],
+    //     "commands": ["workbench.action.gotoSymbol"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "t", "u"],
+    //     "commands": ["editor.action.transformToTitlecase"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "t", "e", "w"],
+    //     "commands": ["workbench.action.toggleEditorWidths"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "n"],
+    //     "commands": ["editor.action.marker.next"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "N"],
+    //     "commands": ["editor.action.marker.prev"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "t", "r"],
+    //     "commands": ["workbench.action.tasks.reRunTask"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "t", "c"],
+    //     "commands": ["workbench.action.tasks.configureTaskRunner"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "n", "h"],
+    //     "commands": ["notifications.hideList"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "n", "c"],
+    //     "commands": ["notifications.clearAll"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "n", "f"],
+    //     "commands": ["notifications.focusToasts"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "n", "s"],
+    //     "commands": ["notifications.showList"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "l"],
+    //     "commands": ["workbench.action.gotoLine"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "f", "b"],
+    //     "commands": ["breadcrumbs.focusAndSelect"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "t", "w"],
+    //     "commands": ["editor.action.toggleWordWrap"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "v", "i", "s"],
+    //     "commands": ["workbench.action.increaseViewSize"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "v", "d", "s"],
+    //     "commands": ["workbench.action.decreaseViewSize"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "v", "i", "h"],
+    //     "commands": ["workbench.action.increaseViewHeight"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "v", "d", "h"],
+    //     "commands": ["workbench.action.decreaseViewHeight"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "v", "i", "w"],
+    //     "commands": ["workbench.action.increaseViewWidth"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "v", "d", "w"],
+    //     "commands": ["workbench.action.decreaseViewWidth"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "t", "t"],
+    //     "commands": ["workbench.action.files.newUntitledFile"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "t", "n"],
+    //     "commands": ["workbench.action.nextEditor"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "t", "N"],
+    //     "commands": ["workbench.action.previousEditor"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "g", "j"],
+    //     "commands": ["workbench.action.moveActiveEditorGroupDown"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "g", "h"],
+    //     "commands": ["workbench.action.moveActiveEditorGroupLeft"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "g", "l"],
+    //     "commands": ["workbench.action.moveActiveEditorGroupRight"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "g", "k"],
+    //     "commands": ["workbench.action.moveActiveEditorGroupUp"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "i", "f"],
+    //     "commands": ["workbench.action.moveEditorToFirstGroup"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "i", "l"],
+    //     "commands": ["workbench.action.moveEditorToLastGroup"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "i", "n"],
+    //     "commands": ["workbench.action.moveEditorToNextGroup"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "i", "p"],
+    //     "commands": ["workbench.action.moveEditorToPreviousGroup"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "e", "h"],
+    //     "commands": ["workbench.action.moveEditorLeftInGroup"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "v", "e", "l"],
+    //     "commands": ["workbench.action.moveEditorRightInGroup"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "c", "e", "g"],
+    //     "commands": ["workbench.action.closeEditorsAndGroup"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "c", "o", "e"],
+    //     "commands": ["workbench.action.closeOtherEditors"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "c", "e", "o"],
+    //     "commands": ["workbench.action.closeEditorsInOtherGroups"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "s", "h"],
+    //     "commands": ["workbench.action.splitEditorLeft"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "s", "j"],
+    //     "commands": ["workbench.action.splitEditorDown"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "s", "k"],
+    //     "commands": ["workbench.action.splitEditorUp"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "s", "l"],
+    //     "commands": ["workbench.action.splitEditorRight"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "g"],
+    //     "commands": ["workbench.scm.focus"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "t", "l"],
+    //     "commands": ["timeline.focus"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "i", "r"],
+    //     "commands": ["git.init"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "a", "i"],
+    //     "commands": ["git.ignore"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "g"],
+    //     "commands": ["github.publish"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "a", "r"],
+    //     "commands": ["git.addRemote"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "r", "r"],
+    //     "commands": ["git.removeRemote"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "s", "c"],
+    //     "commands": ["git.stage"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "s", "a", "c"],
+    //     "commands": ["git.stageAll"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "s", "a", "m"],
+    //     "commands": ["git.stageAllMerge"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "s", "a", "t"],
+    //     "commands": ["git.stageAllTracked"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "s", "a", "u"],
+    //     "commands": ["git.stageAllUntracked"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "u", "c"],
+    //     "commands": ["git.unstage"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "u", "a", "c"],
+    //     "commands": ["git.unstageAll"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "c"],
+    //     "commands": ["git.commit"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "a"],
+    //     "commands": ["git.commitAll"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "s"],
+    //     "commands": ["git.commitStaged"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "e"],
+    //     "commands": ["git.commitEmpty"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "u", "l", "c"],
+    //     "commands": ["git.undoCommit"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "h"],
+    //     "commands": ["git.push"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "f"],
+    //     "commands": ["git.pushForce"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "b", "t"],
+    //     "commands": ["git.pushTo"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "b", "t", "f"],
+    //     "commands": ["git.pushToForce"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "l"],
+    //     "commands": ["git.pull"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "P", "f"],
+    //     "commands": ["git.pullFrom"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "P", "r"],
+    //     "commands": ["git.pullRebase"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "A", "r"],
+    //     "commands": ["git.rebaseAbort"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "b"],
+    //     "commands": ["git.branch"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "b", "f"],
+    //     "commands": ["git.branchFrom"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "d", "b"],
+    //     "commands": ["git.deleteBranch"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "m", "b"],
+    //     "commands": ["git.merge"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "b"],
+    //     "commands": ["git.publish"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "r", "b"],
+    //     "commands": ["git.renameBranch"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "R", "b"],
+    //     "commands": ["git.rebase"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "C"],
+    //     "commands": ["git.checkout"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "C", "d"],
+    //     "commands": ["git.checkoutDetached"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "p"],
+    //     "commands": ["git.cherryPick"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "d", "c"],
+    //     "commands": ["git.clean"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "d", "a", "c"],
+    //     "commands": ["git.cleanAll"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "d", "a", "t"],
+    //     "commands": ["git.cleanAllTracked"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "d", "a", "u"],
+    //     "commands": ["git.cleanAllUntracked"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "s", "s"],
+    //     "commands": ["git.stash"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "s", "i", "u"],
+    //     "commands": ["git.stashIncludeUntracked"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "a", "s"],
+    //     "commands": ["git.stashApply"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "a", "l", "s"],
+    //     "commands": ["git.stashApplyLatest"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "d", "s"],
+    //     "commands": ["git.stashDrop"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "s"],
+    //     "commands": ["git.stashPop"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "l", "s"],
+    //     "commands": ["git.stashPopLatest"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "t"],
+    //     "commands": ["git.createTag"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "d", "t"],
+    //     "commands": ["git.deleteTag"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "p", "t"],
+    //     "commands": ["git.pushTags"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "f", "f"],
+    //     "commands": ["git.fetch"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "f", "p"],
+    //     "commands": ["git.fetchPrune"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "f", "f", "a", "r"],
+    //     "commands": ["git.fetchAll"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "o", "c"],
+    //     "commands": ["git.openChange"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "o", "f"],
+    //     "commands": ["git.openFile"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "s", "n"],
+    //     "commands": ["editor.action.dirtydiff.next"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "s", "N"],
+    //     "commands": ["editor.action.dirtydiff.previous"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "m", "n"],
+    //     "commands": ["workbench.action.editor.nextChange"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "m", "N"],
+    //     "commands": ["workbench.action.editor.previousChange"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "n"],
+    //     "commands": ["workbench.action.compareEditor.nextChange"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "c", "N"],
+    //     "commands": ["workbench.action.compareEditor.previousChange"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "i", "v"],
+    //     "commands": ["toggle.diff.renderSideBySide"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "c", "b"],
+    //     "commands": ["merge-conflict.accept.both"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "c", "c"],
+    //     "commands": ["merge-conflict.accept.current"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "c", "i"],
+    //     "commands": ["merge-conflict.accept.incoming"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "c", "a", "b"],
+    //     "commands": ["merge-conflict.accept.all-both"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "c", "a", "c"],
+    //     "commands": ["merge-conflict.accept.all-current"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "c", "a", "i"],
+    //     "commands": ["merge-conflict.accept.all-incoming"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "c", "o"],
+    //     "commands": ["merge-conflict.compare"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "c", "n"],
+    //     "commands": ["merge-conflict.next"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "m", "c", "N"],
+    //     "commands": ["merge-conflict.previous"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "f"],
+    //     "commands": ["workbench.view.debug"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "c"],
+    //     "commands": ["workbench.action.debug.continue"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "p"],
+    //     "commands": ["workbench.action.debug.pause"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "r"],
+    //     "commands": ["workbench.action.debug.restart"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "h"],
+    //     "commands": ["editor.debug.action.showDebugHover"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "s"],
+    //     "commands": ["workbench.action.debug.start"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "i"],
+    //     "commands": ["workbench.action.debug.stepInto"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "u"],
+    //     "commands": ["workbench.action.debug.stepOut"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "o"],
+    //     "commands": ["workbench.action.debug.stepOver"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "b"],
+    //     "commands": ["editor.debug.action.toggleBreakpoint"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "x"],
+    //     "commands": ["workbench.action.debug.stop"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "a", "l"],
+    //     "commands": ["editor.debug.action.addLogPoint"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "a", "f"],
+    //     "commands": ["workbench.debug.viewlet.action.addFunctionBreakpointAction"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "a", "c"],
+    //     "commands": ["editor.debug.action.conditionalBreakpoint"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "a", "i"],
+    //     "commands": ["editor.debug.action.toggleInlineBreakpoint"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "e", "b"],
+    //     "commands": ["workbench.debug.viewlet.action.enableAllBreakpoints"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "d", "b"],
+    //     "commands": ["workbench.debug.viewlet.action.disableAllBreakpoints"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "r", "b"],
+    //     "commands": ["workbench.debug.viewlet.action.removeAllBreakpoints"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "n"],
+    //     "commands": ["editor.debug.action.goToNextBreakpoint"]
+    //   },
+    //   {
+    //     "before": ["<leader>", "d", "N"],
+    //     "commands": ["editor.debug.action.goToPreviousBreakpoint"]
+    //   }
+  ],
+  "files.autoSave": "afterDelay",
+  "vim.smartRelativeLine": true,
+  "editor.minimap.enabled": false,
+  "redhat.telemetry.enabled": false,
+  "java.compile.nullAnalysis.mode": "automatic",
+  "rsp-ui.enableStartServerOnActivation": [
+    {
+      "id": "redhat.vscode-community-server-connector",
+      "name": "Community Server Connector",
+      "startOnActivation": true
+    }
+  ],
+  "workbench.colorTheme": "Alt Catppuccin Mocha",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "dart.flutterSdkPath": "/mnt/data/Project/flutter_test/flutter",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+  // "vim.insertModeKeyBindings": [
+  //   {
+  //     "before": ["j", "k"],
+  //     "after": ["<Esc>"]
+  //   }
+  // ],
+  // "vim.visualModeKeyBindingsNonRecursive": [
+  //   {
+  //     "before": ["p"],
+  //     "after": ["p", "g", "v", "y"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "q", "f"],
+  //     "commands": ["editor.action.quickFix"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "d", "s"],
+  //     "commands": ["editor.action.duplicateSelection"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "f"],
+  //     "commands": ["editor.action.formatSelection"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "t", "u"],
+  //     "commands": ["editor.action.transformToTitlecase"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "t", "e", "w"],
+  //     "commands": ["workbench.action.toggleEditorWidths"]
+  //   },
+  //   {
+  //     "before": ["<C-j>"],
+  //     "commands": ["editor.action.moveLinesDownAction"]
+  //   },
+  //   {
+  //     "before": ["<C-k>"],
+  //     "commands": ["editor.action.moveLinesUpAction"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "g", "s"],
+  //     "commands": ["git.stageSelectedRanges"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "g", "u"],
+  //     "commands": ["git.unstageSelectedRanges"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "g", "r"],
+  //     "commands": ["git.revertSelectedRanges"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "m", "c", "a"],
+  //     "commands": ["merge-conflict.accept.selection"]
+  //   },
+
+  //   {
+  //     "before": [">"],
+  //     "commands": ["editor.action.indentLines"]
+  //   },
+  //   {
+  //     "before": ["<"],
+  //     "commands": ["editor.action.outdentLines"]
+  //   }
+  // ],
+  // "vim.visualModeKeyBindings": [
+  //   {
+  //     "before": [">"],
+  //     "after": [">", "g", "v"],
+  //     "commands": ["editor.action.indentLines"]
+  //   },
+  //   {
+  //     "before": ["<"],
+  //     "after": ["<", "g", "v"],
+  //     "commands": ["editor.action.outdentLines"]
+  //   },
+  //   {
+  //     "before": ["<leader>", "d"],
+  //     "after": ["d", "d"]
+  //   },
+
+  //   {
+  //     "before": ["<space>", "v", "s", "c"],
+  //     "commands": ["vspacecode.space"]
+  //   }
+  // ],
+  // "vim.handleKeys": {
+  //   "<C-a>": false,
+  //   "<C-f>": false,
+  //   // VS Code new marker @ next occurence
+  //   "<C-c>": true
+  //   // Cut
+  //   // "<C-x>": false,
+  //   // Paste
+  //   // "<C-v>": false ,
+  //   // "<C-z>": false,
+  //   // "<C-y>": false
+  // },
+  // // TO IMPROVE VIM PERFORMANCE
+  // "extensions.experimental.affinity": {
+  //   "vscodevim.vim": 1
+  // },
+  // "[jsonc]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // }
+}

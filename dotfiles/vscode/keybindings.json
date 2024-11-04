@@ -1,0 +1,369 @@
+[
+  // basic
+  // Move between panel in vscode
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpen",
+  },
+  {
+    "key": "alt+h",
+    "command": "-testing.toggleTestingPeekHistory",
+    "when": "testing.isPeekVisible"
+  },
+  {
+    "key": "alt+l",
+    "command": "-toggleSearchEditorContextLines",
+    "when": "inSearchEditor"
+  },
+  {
+    "key": "alt+l",
+    "command": "-toggleFindInSelection",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.previousEditor"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "shift+ctrl+k",
+    "command": "moveActiveEditor",
+    "args": {
+      "to": "left"
+    }
+  },
+  {
+    "key": "shift+ctrl+j",
+    "command": "moveActiveEditor",
+    "args": {
+      "to": "right"
+    }
+  },
+  {
+    "key": "alt+h",
+    "command": "workbench.action.navigateLeft"
+  },
+  {
+    "key": "alt+l",
+    "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "alt+k",
+    "command": "workbench.action.navigateUp"
+  },
+  {
+    "key": "alt+j",
+    "command": "workbench.action.navigateDown"
+  },
+  {
+    "key": "f12",
+    "command": "editor.action.revealDefinitionAside",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "editor.action.revealDefinitionAside",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+k",
+    "command": "workbench.action.moveEditorToLeftGroup",
+    // "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+j",
+    "command": "workbench.action.moveEditorToRightGroup",
+    // "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+  // Move active editor left or right (useful for full-stack web dev).
+  
+  
+  // Move line up and line down remap
+  {
+    "key": "alt+shift+j",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+shift+k",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+
+  
+  // Traverse VSCode IntelliSense suggestions with vim keybindings.
+  {
+    "key": "ctrl+n",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+
+  
+  // Traverse VSCode quick open options with vim keybindings.
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+
+  
+  // Easy navigation in code action
+  {
+    "key": "ctrl+n",
+    "command": "selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "selectPrevCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+
+  
+  // Explorer
+  {
+    "key": "ctrl+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "alt+b",
+    "command": "runCommands",
+    "args" : {
+      "commands" : [
+        "workbench.action.toggleSidebarVisibility",
+        "workbench.action.focusSideBar"
+ ]
+    },
+    "when": "!sideBarFocus && !sidebarVisible"
+  },
+  {
+    "key": "alt+b",
+    "command": "workbench.action.focusSideBar",
+    "when": "!sidebarFocus && sideBarVisible"
+  },
+  {
+    "key": "alt+b",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus"
+  },
+  
+  {
+    "key": "ctrl+o",
+    "command": "-workbench.action.files.openFile",
+    "when": "true"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "workbench.action.files.openFolder",
+  },
+  {
+    "key": "ctrl+shift+o",
+    "command": "workbench.action.files.openFile",
+  },
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  {
+    "key": "shift+a",
+    "command": "explorer.newFolder",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  {
+    "key": "y",
+    "command": "filesExplorer.copy",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  {
+    "key": "x",
+    "command": "filesExplorer.cut",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  {
+    "key": "d",
+    "command": "moveFileToTrash",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  {
+    "key": "c",
+    "command": "workbench.files.action.collapseExplorerFolders",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  {
+    "key": "u",
+    "command": "copyFilePath",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  {
+    "key": "i",
+    "command": "copyRelativeFilePath",
+    "when": "sideBarFocus && !inputFocus"
+  },
+  // Add ctrl+h/l to navigate in file browser
+  // {
+  //   "key": "ctrl+h",
+  //   "command": "file-browser.stepOut",
+  //   "when": "inFileBrowser"
+  // },
+  // {
+  //   "key": "ctrl+l",
+  //   "command": "file-browser.stepIn",
+  //   "when": "inFileBrowser"
+  // },
+
+  // Terminal
+  {
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.terminal.scrollDown",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "workbench.action.terminal.scrollUp",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "-workbench.action.closeWindow"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "workbench.action.terminal.kill", 
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalFocus && terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+
+  {
+    "key": "alt+l",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "alt+h",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+
+  {
+    // "key": "alt+shift+]",
+    "key": "ctrl+j",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    // "key": "alt+shift+[",
+    "key": "ctrl+k",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  
+  {
+    "key": "ctrl+\\",
+    "command": "workbench.action.terminal.split",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "alt+t",
+    // "command": "workbench.action.togglePanel",
+    "command": "workbench.action.terminal.toggleTerminal",
+    // "when": "!terminalIsOpen"
+  },
+// {
+//     "command": "workbench.action.togglePanel"
+//   }
+  
+  //============================================================================
+  //========================= VSPACECODE CONFIGURATION =========================
+  //https://github.com/VSpaceCode/VSpaceCode/blob/master/src/configuration/keybindings.jsonc
+  //============================================================================
+  // Trigger vspacecode in empty editor group
+  // {
+  //   "key": "g g",
+  //   "command": "cursorTop",
+  //   "when": "editorTextFocus && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  // },
+
+  // Keybindings required for edamagit extension
+  // https://github.com/kahole/edamagit#vim-support-vscodevim
+
+  // {
+  //   "key": "tab",
+  //   "command": "extension.vim_tab",
+  //   "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'"
+  // },
+  // {
+  //   "key": "tab",
+  //   "command": "-extension.vim_tab",
+  //   "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
+  // },
+  // {
+  //   "key": "ctrl+`",
+  //   "command": "workbench.action.terminal.toggleTerminal",
+  //   "when": "terminal.active"
+  // },
+  
+    
+  // MISC
+  {
+    "key": "ctrl+`",
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "-workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+0",
+    "command": "-workbench.action.focusSideBar"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.openRecent"
+  },
+  {
+    "key": "alt+1",
+    "command": "-workbench.action.openEditorAtIndex1"
+  },
+  {
+    "key": "alt+2",
+    "command": "-workbench.action.openEditorAtIndex2"
+  },
+  {
+    "key": "alt+3",
+    "command": "-workbench.action.openEditorAtIndex3"
+  },
+  {
+    "key": "f12",
+    "command": "-editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+]
